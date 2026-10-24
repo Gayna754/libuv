@@ -1384,6 +1384,11 @@ static int uv__fs_copyfile(uv_fs_t* req) {
       break;
     }
 
+    if (bytes_written == 0) {
+      err = UV__EIO;
+      break;
+    }
+
     bytes_to_send -= bytes_written;
     in_offset += bytes_written;
   }
